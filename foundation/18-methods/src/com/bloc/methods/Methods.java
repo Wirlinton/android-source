@@ -32,13 +32,15 @@ public class Methods extends Object {
 	 * @return the logical opposite of the original
 	 */
 	public boolean giveMeTheOpposite(boolean original) {
-		/************************************************
-		 * Your work goes here
-		 ************************************************/
+		
+		// My solution starts here
 
-		// You are free to modify the return statement
+		if (original == false) {
+		    return true;
+		}
 		return false;
-	}
+		// Ends here
+	      }
 
 	/*
 	 * flipTheSign
@@ -57,10 +59,16 @@ public class Methods extends Object {
 	 * @return nothing
 	 */
 	public void flipTheSign(int[] numbers) {
-		/************************************************
-		 * Your work goes here
-		 ************************************************/
-	}
+		//************************************************
+
+	int counter = 0;
+	while (counter < numbers.length) {
+	    numbers[counter] = numbers[counter] * -1;
+	    counter++;
+	    }
+	    
+      }
+ 	//My code above **********************
 
 
 	/*
@@ -87,13 +95,26 @@ public class Methods extends Object {
 	 * @return an array of booleans
 	 */
 	public boolean[] boolsRule(int floor, int[] someNumbers) {
-		/************************************************
-		 * Your work goes here
-		 ************************************************/
 
-		// You are free to modify the return statement
-		return new boolean [0];
+		//***********************************************
+	
+	int counter = 0;
+	int aLength = someNumbers.length;
+	boolean[] listBools = new boolean[aLength];
+
+	while (counter < someNumbers.length) {
+		if (someNumbers[counter] >= floor) {
+			listBools[counter] = true;
+		} else {
+			listBools[counter] = false;
+		}
+		counter++;
 	}
+
+	return listBools;
+}
+
+	// My solution above
 
 	/*
 	 * getMinAndMax
@@ -117,10 +138,23 @@ public class Methods extends Object {
 		/************************************************
 		 * Your work goes here
 		 ************************************************/
-
-		// You are free to modify the return statement
-		return new int[2];
+	    int min = someNumbers[0];
+	    int max = someNumbers[0];
+        int counter = 1;
+	    while (counter < someNumbers.length) {
+		    if (someNumbers[counter] < min) {
+			    min = someNumbers[counter];
+		}
+		    if (someNumbers[counter] > max) {
+			    max = someNumbers[counter];
+		}
+		counter++;
 	}
+
+	int returnArray[] = { min, max };
+
+	return returnArray;
+}
 
 
 	/************************************************

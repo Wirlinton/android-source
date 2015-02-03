@@ -21,12 +21,12 @@ class Dog {
 	float mWeight;
 	// The color of its coat
 	String mColor;
-
 	/************************************************
 	 * ADD MEMBER VARIABLES HERE IF NECESSARY	
 	/************************************************/
-
-
+	int fCounter = 0;
+	int pCounter = 0;
+	int hCounter = 0;
 	/*
 	 * getHairLength
 	 *
@@ -36,7 +36,9 @@ class Dog {
  	 *	ASSIGNMENT:
  	 *	Create the getHairLength method
 	/************************************************/
-
+	float getHairLength() {
+		return mHairLength;
+	}
 	/*
 	 * setHairLength
 	 *
@@ -49,7 +51,9 @@ class Dog {
  	 *	ASSIGNMENT:
  	 *	Create the setHairLength method
 	/************************************************/
-
+	void setHairLength(float hairLength) {
+		mHairLength = hairLength;
+	}
 	/*
 	 * getGender
 	 *
@@ -60,6 +64,9 @@ class Dog {
  	 *	ASSIGNMENT:
  	 *	Create the getGender method
 	/************************************************/
+	String getGender() {
+		return mGender;
+	}
 
 	/*
 	 * setGender
@@ -73,7 +80,9 @@ class Dog {
  	 *	ASSIGNMENT:
  	 *	Create the setGender method
 	/************************************************/
-
+	void setGender(String gender) {
+		mGender = gender;
+	}
 	/*
 	 * getSize
 	 *
@@ -83,7 +92,9 @@ class Dog {
  	 *	ASSIGNMENT:
  	 *	Create the getSize method
 	/************************************************/
-
+	String getSize() {
+		return mSize;
+	}
 	/*
 	 * setSize
 	 *
@@ -96,7 +107,9 @@ class Dog {
  	 *	ASSIGNMENT:
  	 *	Create the setSize method
 	/************************************************/
-
+	void setSize(String size) {
+		mSize = size;
+	}
 	/*
 	 * getAge
 	 *
@@ -106,7 +119,9 @@ class Dog {
  	 *	ASSIGNMENT:
  	 *	Create the getAge method
 	/************************************************/
-
+	int getAge() {
+		return mAge;
+	}
 	/*
 	 * setAge
 	 *
@@ -119,7 +134,9 @@ class Dog {
  	 *	ASSIGNMENT:
  	 *	Create the setAge method
 	/************************************************/
-
+	void setAge(int age) {
+		mAge = age;
+	}
 	/*
 	 * getWeight
 	 *
@@ -129,7 +146,9 @@ class Dog {
  	 *	ASSIGNMENT:
  	 *	Create the getWeight method
 	/************************************************/
-
+	float getWeight() {
+		return mWeight;
+	}
 	/*
 	 * setWeight
 	 *
@@ -142,7 +161,9 @@ class Dog {
  	 *	ASSIGNMENT:
  	 *	Create the setWeight method
 	/************************************************/
-
+	void setWeight(float weight) {
+		mWeight = weight;
+	}
 	/*
 	 * getColor
 	 *
@@ -152,7 +173,9 @@ class Dog {
  	 *	ASSIGNMENT:
  	 *	Create the getColor method
 	/************************************************/
-
+	String getColor() {
+		return mColor;
+	}
 	/*
 	 * setColor
 	 *
@@ -165,7 +188,9 @@ class Dog {
  	 *	ASSIGNMENT:
  	 *	Create the setColor method
 	/************************************************/
-
+	void setColor(String color) {
+		mColor = color;
+	}
 	/*
 	 * feed
 	 *
@@ -184,6 +209,27 @@ class Dog {
  	 *	ASSIGNMENT:
  	 *	Create the feed method
 	/************************************************/
+	void feed() {
+	
+	   mWeight = mWeight + WEIGHT_GAIN;
+			if(mSize == "tiny" && fCounter == 2) {
+				mSize = "small";
+				fCounter = 0;
+			}
+			if(mSize == "small" && fCounter == 2) {
+				mSize = "average";
+				fCounter = 0;
+			}
+			if(mSize == "average" && fCounter == 2) {
+				mSize = "large";
+				fCounter = 0;
+			}	
+			else
+			{ mWeight = mWeight;
+				mSize = mSize;
+			}
+			fCounter++;
+	    }
 
 	/*
 	 * play
@@ -202,7 +248,27 @@ class Dog {
  	 *	ASSIGNMENT:
  	 *	Create the play method
 	/************************************************/
-
+	void play() {
+		
+	    mWeight = mWeight - WEIGHT_LOSS;
+			if(mSize == "large" && pCounter == 5) {
+				mSize = "average";
+				pCounter = 0;
+			}
+			if(mSize == "average" && pCounter == 5) {
+				mSize = "small";
+				pCounter = 0;
+			}
+			if(mSize == "small" && pCounter == 5) {
+				mSize = "tiny";
+				pCounter = 0;
+			}	
+			else
+			{ mWeight = mWeight;
+				mSize = mSize;
+			}
+			pCounter++;
+	    }
 	/*
 	 * cutHair
 	 *
@@ -217,5 +283,10 @@ class Dog {
  	 *	ASSIGNMENT:
  	 *	Create the cutHair method
 	/************************************************/
-
+	void cutHair() {
+		while(mHairLength >= 0f) {
+	    mHairLength = mHairLength - HAIR_CUT_LENGTH;
+	    }
+		System.out.println("Working Cut?");
+	}	
 }

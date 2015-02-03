@@ -9,7 +9,7 @@ abstract class Dog {
 	// Add this amount for each meal
 	final static float WEIGHT_GAINED_FROM_FEEDING = .1f;
 	// Reduce this amount for each play
-	final static float WEIGHT_LOST_FROM_FEEDING = .2f;
+	final static float WEIGHT_LOST_FROM_PLAYING = .2f;
 	// Minimum weight (1 pound)
 	final static float MINIMUM_WEIGHT = 1f;
 	// Hair length reduced by this value
@@ -166,7 +166,7 @@ abstract class Dog {
 	 * @return nothing
 	 */
 	void play() {
-		setWeight(getWeight() - WEIGHT_LOST_FROM_FEEDING);
+		setWeight(getWeight() - WEIGHT_LOST_FROM_PLAYING);
 		if (getWeight() < MINIMUM_WEIGHT) {
 			setWeight(MINIMUM_WEIGHT);
 		}
@@ -199,8 +199,9 @@ abstract class Dog {
 	void changeSize(boolean grow) {
 		int sizeIndex = getSizeIndex();
 		sizeIndex = sizeIndex + (grow ? 1 : -1);
-		if (sizeIndex > 3) {
-			sizeIndex = 3;
+		//Changed sizeIndex from 3 to 4.
+		if (sizeIndex > 4) {
+			sizeIndex = 4;
 		} else if (sizeIndex < 0) {
 			sizeIndex = 0;
 		}
@@ -228,6 +229,10 @@ abstract class Dog {
 			return 2;
 		}
 
+		/*
+		 * Added a fifth option of 'huge'.
+		 */
+
 		if( "tiny".equals(size) ) {
 			return 0;
 		} else if( "small".equals(size) ) {
@@ -236,6 +241,8 @@ abstract class Dog {
 			return 2;
 		} else if( "large".equals(size) ) {
 			return 3;
+		} else if( "huge".equals(size) ) {
+			return 4;
 		} else {
 			return 2;
 		}
@@ -245,13 +252,15 @@ abstract class Dog {
 	 * fromSizeIndex
 	 * @param index the index into the sizes array
 	 * @return a String, one of {"tiny", "small", "average", "large"}
+	 * Added a fifth case of 'huge'
 	 */
 	String fromSizeIndex(int index) {
 		switch(index) {
 			case 0: return "tiny";
 			case 1: return "small";
 			case 2: return "average";
-			case 3:
+			case 3: return "large";
+			case 4: return "huge";
 			default: return "large";
 		}
 	}

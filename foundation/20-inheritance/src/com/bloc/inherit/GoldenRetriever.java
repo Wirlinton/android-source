@@ -9,7 +9,19 @@ package com.bloc.inherit;
 /************************************************/
 class GoldenRetriever extends Dog {
 
-		void grow() {
-		
+	int pCounter;
+
+	@Override
+		void play() {
+
+		setWeight(getWeight() - WEIGHT_LOST_FROM_PLAYING);
+		if (getWeight() < MINIMUM_WEIGHT) {
+			setWeight(MINIMUM_WEIGHT);
+		}
+		// Pre-increment play counter
+		if (++pCounter == 3) {
+			changeSize(false);
+			pCounter = 0;
+		}
 	}
 }

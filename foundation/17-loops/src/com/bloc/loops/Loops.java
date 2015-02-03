@@ -53,7 +53,9 @@ public class Loops extends Object {
 		for (dCounter = 0; dCounter < numArray.length; dCounter++) {
 			numArray[dCounter] = someBools[dCounter] ? 1 : 0;
 		}
-		/*numArray[0] = !someBools[0] ? 1 : 0;
+		
+		/*
+	       	numArray[0] = !someBools[0] ? 1 : 0;
 		numArray[1] = !someBools[1] ? 1 : 0;
 		numArray[2] = !someBools[2] ? 1 : 0;
 		numArray[3] = !someBools[3] ? 1 : 0;

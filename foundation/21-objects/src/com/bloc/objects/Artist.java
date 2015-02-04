@@ -16,4 +16,9 @@ class Artist extends Object {
 	 *	ASSIGNMENT:
 	 *	Create the Artist constructor
 	/************************************************/
+	Artist(String mFirstName, String mLastName) {
+		this.mFirstName = mFirstName;
+		this.mLastName = mLastName;
+
+	}
 }

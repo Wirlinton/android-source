@@ -2,6 +2,7 @@ package com.bloc.collections;
 
 import java.util.*;
 
+
 /*
  * FavoritePastries
  * 
@@ -20,100 +21,139 @@ import java.util.*;
 public class FavoritePastries {
 
 	/************************************************
- 	 *	ASSIGNMENT:
-	 *	Use a HashMap to store the relationship
-	 *	between rating and pastry: HashMap<Integer, List<Pastry>>
-	/************************************************/
+	 * ASSIGNMENT: Use a HashMap to store the relationship between rating and
+	 * pastry: HashMap<Integer, List<Pastry>> /
+	 ************************************************/
 
+	Map<Integer, List<Pastry>> pastryList;
+
+	// private ArrayList<Pastry> myFavPastries;
 
 	public FavoritePastries() {
+
+		pastryList = new HashMap<Integer, List<Pastry>>();
+
 		/************************************************
- 	 	 *	WORK HERE
-		/************************************************/
+		 * WORK HERE /
+		 ************************************************/
 	}
 
-	/* 
+	/*
 	 * addPastry
-	 *
+	 * 
 	 * Add a Pastry to the FavoritePastries class.
-	 *
-	 * This method stores this Pastry and its
-	 * associated rating in some sort of data structure.
-	 *
-	 * If this Pastry already exists in FavoritePastries,
-	 * its old rating should be updated.
-	 *
+	 * 
+	 * This method stores this Pastry and its associated rating in some sort of
+	 * data structure.
+	 * 
+	 * If this Pastry already exists in FavoritePastries, its old rating should
+	 * be updated.
+	 * 
 	 * @param pastry The Pastry to store
+	 * 
 	 * @param rating The rating to associate with it
+	 * 
 	 * @return nothing
 	 */
 	public void addPastry(Pastry pastry, int rating) {
 		/************************************************
- 	 	 *	WORK HERE
-		/************************************************/
+		 * WORK HERE /
+		 ************************************************/
+
+		List<Pastry> tempPastry;
+		tempPastry = pastryList.get(rating);
+		pastryList.put(rating, tempPastry);
 	}
 
-	/* 
+	/*
 	 * removePastry
-	 *
+	 * 
 	 * Remove a Pastry from FavoritePastries
-	 *
-	 * This method removes any reference to this exact
-	 * Pastry object and its associated rating
-	 *
+	 * 
+	 * This method removes any reference to this exact Pastry object and its
+	 * associated rating
+	 * 
 	 * @param pastry The Pastry to remove
-	 * @return true if the Pastry was found and removed,
-	 *		   false otherwise
+	 * 
+	 * @return true if the Pastry was found and removed, false otherwise
 	 */
 	public boolean removePastry(Pastry pastry) {
 		/************************************************
- 	 	 *	WORK HERE, you must modify the return value
-		/************************************************/
-		return false;
+		 * WORK HERE, you must modify the return value /
+		 ************************************************/
+		List<Pastry> tempPastry;
+		tempPastry = pastryList.get(pastry);
+		if (tempPastry != null) {
+			tempPastry = pastryList.remove(pastry);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
-	/* 
+	/*
 	 * getRatingForPastry
-	 *
+	 * 
 	 * Return the associated rating for a given Pastry
-	 *
-	 * This method will find the associated rating for
-	 * this Pastry inside of FavoritePastries and return
-	 * it to its caller.
-	 *
-	 * @param  pastry The Pastry for which a rating must
-	 * 		   be recovered
-	 * @return the rating associated with this Pastry or
-	 *		   -1 if not found among FavoritePastries
+	 * 
+	 * This method will find the associated rating for this Pastry inside of
+	 * FavoritePastries and return it to its caller.
+	 * 
+	 * @param pastry The Pastry for which a rating must be recovered
+	 * 
+	 * @return the rating associated with this Pastry or -1 if not found among
+	 * FavoritePastries
 	 */
 	public int getRatingForPastry(Pastry pastry) {
 		/************************************************
- 	 	 *	WORK HERE, you must modify the return value
-		/************************************************/
+		 * WORK HERE, you must modify the return value /
+		 ************************************************/
+
+		Set set = (Set) pastryList.entrySet();
+		Iterator mapIt = set.iterator();
+		while (mapIt.hasNext()) {
+			Map.Entry mapEntry = (Map.Entry) mapIt.next();
+			Integer keyValue = (Integer) mapEntry.getKey();
+			Pastry value = (Pastry) mapEntry.getValue();
+			if (pastry == value) {
+				return keyValue;
+			}
+		}
 		return -1;
+
 	}
 
-	/* 
+	/*
 	 * getPastriesForRating
-	 *
-	 * Return a Set of all the Pastries with a given
-	 * rating.
-	 *
-	 * This method returns a Set<Pastry> object containing
-	 * references to all of the Pastries associated with
-	 * a particular rating.
-	 *
-	 * @param  rating The rating of the Pastry objects the
-	 *		   caller wishes to recover
-	 * @return A Set of all the Pastry objects with a rating
-	 * 		   of `rating`. Returns an empty set if none are
-	 *         found
+	 * 
+	 * Return a Set of all the Pastries with a given rating.
+	 * 
+	 * This method returns a Set<Pastry> object containing references to all of
+	 * the Pastries associated with a particular rating.
+	 * 
+	 * @param rating The rating of the Pastry objects the caller wishes to
+	 * recover
+	 * 
+	 * @return A Set of all the Pastry objects with a rating of `rating`.
+	 * Returns an empty set if none are found
 	 */
 	public Collection<Pastry> getPastriesForRating(int rating) {
 		/************************************************
- 	 	 *	WORK HERE, you must modify the return value
-		/************************************************/
-		return null;
+		 * WORK HERE, you must modify the return value /
+		 ************************************************/
+		Set set = (Set) pastryList.entrySet();
+		Iterator mapIt = set.iterator();
+		while (mapIt.hasNext()) {
+			Map.Entry mapEntry = (Map.Entry) mapIt.next();
+			Integer keyValue = (Integer) mapEntry.getKey();
+			if (keyValue == rating) {
+				Set keyset = pastryList.keySet();
+				return keyset;
+			}
+		}
+		Set keyset = null;
+		return keyset;
+
 	}
 
 }

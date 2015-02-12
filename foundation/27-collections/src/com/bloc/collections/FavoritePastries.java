@@ -2,7 +2,6 @@ package com.bloc.collections;
 
 import java.util.*;
 
-
 /*
  * FavoritePastries
  * 
@@ -110,7 +109,7 @@ public class FavoritePastries {
 		 ************************************************/
 
 		Set set = (Set) pastryList.entrySet();
-		Iterator mapIt = set.iterator();
+		Iterator<?> mapIt = set.iterator();
 		while (mapIt.hasNext()) {
 			Map.Entry mapEntry = (Map.Entry) mapIt.next();
 			Integer keyValue = (Integer) mapEntry.getKey();
@@ -119,8 +118,9 @@ public class FavoritePastries {
 				return keyValue;
 			}
 		}
-		return -1;
-
+		Integer nPastry = -1;
+		return nPastry;
+		
 	}
 
 	/*
@@ -137,23 +137,24 @@ public class FavoritePastries {
 	 * @return A Set of all the Pastry objects with a rating of `rating`.
 	 * Returns an empty set if none are found
 	 */
+	
 	public Collection<Pastry> getPastriesForRating(int rating) {
 		/************************************************
 		 * WORK HERE, you must modify the return value /
 		 ************************************************/
 		Set set = (Set) pastryList.entrySet();
-		Iterator mapIt = set.iterator();
+		Iterator<?> mapIt = set.iterator();
 		while (mapIt.hasNext()) {
 			Map.Entry mapEntry = (Map.Entry) mapIt.next();
 			Integer keyValue = (Integer) mapEntry.getKey();
 			if (keyValue == rating) {
-				Set keyset = pastryList.keySet();
-				return keyset;
+				Set keySet = pastryList.keySet();
+				return keySet;
 			}
-		}
-		Set keyset = null;
-		return keyset;
 
+		}
+		Set<Pastry> eKeySet = Collections.emptySet();
+		return eKeySet;
 	}
 
 }

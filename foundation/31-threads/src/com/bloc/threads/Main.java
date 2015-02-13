@@ -14,7 +14,12 @@ public class Main extends Object {
 		 *	Perform the following block of code on a separate
 		 *	Thread, use the ImageGetter class.
 		/************************************************/
+	ImageGetter imageGetter = new ImageGetter("https://www.google.com/images/srpr/logo11w.png", true);
+	imageGetter.start();
+	//Thread t2 = new Thread(new ImageGetter("https://www.google.com/images/srpr/logo11w.png", true));
+		
 
+		/*
 		try {
 			File existingImage = new File("google_logo.png");
 			if (existingImage.exists()) {
@@ -51,6 +56,7 @@ public class Main extends Object {
 			e.printStackTrace();
 			System.exit(1);
 		}
+		
 
 		if (exists) {
 			System.out.println("/************************/");

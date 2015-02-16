@@ -9,11 +9,18 @@ package com.bloc.statics.appliances;
 import com.bloc.statics.PowerSupply;
 
 public abstract class Appliance extends Object {
-	PowerSupply mPowerSupply;
+	
+
+	static PowerSupply mPowerSupply;
 
 	String mBrandName;
 	String mSerialNumber;
-	boolean mIsOn;
+	static boolean mIsOn;
+	
+	//Is this declaring a variable that is a reference for an instance of an Appliance object?
+	//i.e effectively replacing the keyword (this)?
+	private static Appliance Appliance;
+	
 
 	/*
 	 * performFunction
@@ -29,19 +36,20 @@ public abstract class Appliance extends Object {
 		}
 		return false;
 	}
+	
 
 	/*
 	 * _performFunction
 	 * Protected abstract function to perform, subclasses must override
 	 */
 	protected abstract void _performFunction();
-
+	
 	/*
 	 * flipPowerSwitch()
 	 * Flips the power switch on the appliance. Off becomes
 	 * on, on becomes off
 	 */
-	public void flipPowerSwitch() {
+	public static void flipPowerSwitch() {
 		mIsOn = !mIsOn;
 	}
 
@@ -50,31 +58,32 @@ public abstract class Appliance extends Object {
 	 * @return true if the power switch is flipped on and the appliance
 	 * 		   is plugged in
 	 */
-	public boolean isOn() {
-		return mPowerSupply == null ? false : mPowerSupply.hasAppliance(this) && mIsOn;
+	public static boolean isOn() {
+		return mPowerSupply == null ? false : mPowerSupply.hasAppliance(Appliance) && mIsOn;
+	
 	}
 
 	/*
 	 * plugIn
 	 * Plug the appliance into the power supply
 	 */
-	public void plugIn() {
+	public static void plugIn() {
 		if (mPowerSupply == null) {
 			mPowerSupply = new PowerSupply();
 		}
-		if (!mPowerSupply.hasAppliance(this)) {
-			mPowerSupply.plugAppliance(this);
+		if (!mPowerSupply.hasAppliance(Appliance)) {
+			mPowerSupply.plugAppliance(Appliance);
 		}
 	}
 
 	/*
 	 * unplug
-	 * Remove this appliance from the power supplys
+	 * Remove this appliance from the power supplies
 	 */
-	public void unplug() {
+	public static void unplug() {
 		if (mPowerSupply == null) {
 			return;
 		}
-		mPowerSupply.unplugAppliance(this);
+		mPowerSupply.unplugAppliance(Appliance);
 	}
 }

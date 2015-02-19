@@ -5,12 +5,12 @@
 
 
         <TextView
+            android:id="@+id/textViewId"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Hello again, world!"
             android:textSize="26sp"
             android:gravity="center"
-            android:layout_gravity="center"/>
-
+            android:layout_gravity="center"
+            android:text="hello_world"/>
 
 </LinearLayout>

@@ -45,7 +45,10 @@ public class RobotoTextView extends TextView {
                 attrs, R.styleable.Roboto,0, 0);
 
         int robotoFontIndex = typedArray.getInteger(R.styleable.Roboto_robotoFont, -1);
-
+        boolean condensed = typedArray.getBoolean(R.styleable.Roboto_condensed, false);
+        if(robotoFontIndex < 12 && condensed == true) {
+            robotoFontIndex += 10;
+        }
         typedArray.recycle();
 
         String[] stringArray = getResources().getStringArray(R.array.roboto_font_file_names);

@@ -21,5 +21,8 @@
             <enum name="CondensedLightItalic" value="16"/>
             <enum name="CondensedRegular" value="17"/>
         </attr>
+
+        <attr name="condensed" format="boolean">
+        </attr>
     </declare-styleable>
 </resources>

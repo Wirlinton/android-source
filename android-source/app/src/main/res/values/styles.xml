@@ -13,6 +13,7 @@
         <item name="android:ellipsize">end</item>
         // #2
         <item name="robotoFont">Regular</item>
+        <item name="condensed">true</item>
     </style>
 
     <style name="Caption">
@@ -21,6 +22,7 @@
         <item name="android:lines">1</item>
         <item name="android:ellipsize">end</item>
         <item name="robotoFont">Regular</item>
+
     </style>
 
     <style name="Body1">

@@ -1,6 +1,8 @@
 package io.bloc.android.blocly.ui.adapter;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -117,6 +119,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
         @Override
         public void onClick(View view) {
             Toast.makeText(view.getContext(), rssItem.getTitle(), Toast.LENGTH_SHORT).show();
+            view.getBackground().setColorFilter(Color.parseColor("#138FA5"), PorterDuff.Mode.DARKEN);
         }
     }
 }

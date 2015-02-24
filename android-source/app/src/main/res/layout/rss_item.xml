@@ -25,6 +25,7 @@
         android:layout_height="140dp"
         android:scaleType="centerCrop"/>
 
+
     </FrameLayout>
 
     <io.bloc.android.blocly.ui.widget.RobotoTextView

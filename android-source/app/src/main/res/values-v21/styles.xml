@@ -12,6 +12,7 @@
         <!-- Window Background -->
         <item name="android:windowBackground">@color/windowBackground</item>
         <!-- Customize your theme here. -->
+        <!--<item name="android:textColor">@drawable/btn_text_drawable</item>-->
     </style>
 
 </resources>

@@ -52,7 +52,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
     // #9
     class ItemAdapterViewHolder extends RecyclerView.ViewHolder implements ImageLoadingListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
-        boolean contectExpanded;
+        boolean contentExpanded;
         TextView title;
         TextView feed;
         TextView content;
@@ -134,9 +134,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
         @Override
         public void onClick(View view) {
             if (view == itemView) {
-                contectExpanded = !contectExpanded;
-                expandedContentWrapper.setVisibility(contectExpanded ? View.VISIBLE : View.GONE);
-                content.setVisibility(contectExpanded ? View.GONE : View.VISIBLE);
+                contentExpanded = !contentExpanded;
+                expandedContentWrapper.setVisibility(contentExpanded ? View.VISIBLE : View.GONE);
+                content.setVisibility(contentExpanded ? View.GONE : View.VISIBLE);
             } else {
                 Toast.makeText(view.getContext(), "Visit " + rssItem.getUrl(), Toast.LENGTH_SHORT).show();
             }

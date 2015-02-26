@@ -65,7 +65,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
         View expandedContentWrapper;
         TextView expandedContent;
         TextView visitSite;
-// #6
+        // #6
         RssItem rssItem;
 
         public ItemAdapterViewHolder(View itemView) {

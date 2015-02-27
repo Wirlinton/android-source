@@ -9,6 +9,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
 
 import io.bloc.android.blocly.R;
@@ -25,6 +26,7 @@ private ItemAdapter itemAdapter;
     private DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blocly);
 
@@ -42,9 +44,11 @@ private ItemAdapter itemAdapter;
 
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, 0, 0);
         drawerLayout.setDrawerListener(drawerToggle);
+
     }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
+        drawerLayout.openDrawer(Gravity.LEFT);
         super.onPostCreate(savedInstanceState);
         drawerToggle.syncState();
     }

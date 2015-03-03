@@ -39,7 +39,7 @@
     </style> -->
 
     <style name="RobotoButton">
-        <item name="android:textColor">@drawable/btn_text_drawable</item>
+        <item name="android:textColor">@color/primary</item>
         <item name="android:textSize">14sp</item>
         <item name="android:background">@color/windowBackground</item>
         <item name="android:textAllCaps">true</item>

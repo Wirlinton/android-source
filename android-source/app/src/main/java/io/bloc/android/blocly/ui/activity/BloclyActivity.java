@@ -72,6 +72,4 @@ public class BloclyActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

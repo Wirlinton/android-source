@@ -74,7 +74,7 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
 
             if (position < NavigationOption.values().length) {
 // #5
-                int[] titleTexts = new int[] {R.string.navigation_option_inbox,
+                int[] titleTexts = new int[]{R.string.navigation_option_inbox,
                         R.string.navigation_option_favorites,
                         R.string.navigation_option_archived};
                 title.setText(titleTexts[position]);
@@ -86,7 +86,6 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
          /*
           * OnClickListener
           */
-
         @Override
         public void onClick(View v) {
             Toast.makeText(v.getContext(), "Nothing… yet!", Toast.LENGTH_SHORT).show();

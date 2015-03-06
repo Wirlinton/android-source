@@ -29,7 +29,13 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
+        RssFeed rssFeed = null;
 
+        if (position >= NavigationOption.values().length) {
+            int feedPosition = position - NavigationOption.values().length;
+            rssFeed = BloclyApplication.getSharedDataSource().getFeeds().get(feedPosition);
+        }
+        viewHolder.update(position, rssFeed);
     }
 
     @Override

@@ -30,6 +30,22 @@ import io.bloc.android.blocly.api.model.RssItem;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterViewHolder> {
 
+
+    public static interface itemAdapterDelegate {
+        public void userItemExpanded();
+        public void userItemContracted();
+        public void visitSite();
+        public void toggleFavorite();
+        public void archiveItem();
+
+    }
+
+    private itemAdapterDelegate _delegate;
+
+    public void set_delegate(itemAdapterDelegate delegate) {
+        _delegate = delegate;
+    }
+
     private static String TAG = ItemAdapter.class.getSimpleName();
     // #6
     @Override
@@ -52,7 +68,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
     }
 
     // #9
-    class ItemAdapterViewHolder extends RecyclerView.ViewHolder implements ImageLoadingListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+    class ItemAdapterViewHolder extends RecyclerView.ViewHolder implements ImageLoadingListener, View.OnClickListener {
 
         boolean contentExpanded;
         TextView title;
@@ -65,8 +81,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
         View expandedContentWrapper;
         TextView expandedContent;
         TextView visitSite;
-        // #6
         RssItem rssItem;
+
 
         public ItemAdapterViewHolder(View itemView) {
             super(itemView);
@@ -83,10 +99,38 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
             visitSite = (TextView) expandedContentWrapper.findViewById(R.id.tv_rss_item_visit_site);
             itemView.setOnClickListener(this);
             visitSite.setOnClickListener(this);
-            archiveCheckbox.setOnCheckedChangeListener(this);
-            favoriteCheckbox.setOnCheckedChangeListener(this);
-        }
 
+
+
+            archiveCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isArchived) {
+                    if (_delegate != null) {
+                        _delegate.archiveItem();
+                    } else
+
+                    {
+                        Log.v(TAG, "Archive changed to: " + isArchived);
+
+                    }
+                }
+            });
+
+            archiveCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (_delegate != null) {
+                        _delegate.toggleFavorite();
+                    } else
+
+                    {
+                        Log.v(TAG, "Checked changed to: " + isChecked);
+
+                    }
+                }
+            });
+
+        }
         void update(RssFeed rssFeed, RssItem rssItem) {
             this.rssItem = rssItem;
             feed.setText(rssFeed.getTitle());
@@ -108,7 +152,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
          */
 
         @Override
-        public void onLoadingStarted(String imageUri, View view) {}
+        public void onLoadingStarted(String imageUri, View view) {
+        }
 
         @Override
         public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
@@ -130,11 +175,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
             // Attempt a retry
             ImageLoader.getInstance().loadImage(imageUri, this);
         }
+
         /*
          * OnClickListener
          */
         @Override
         public void onClick(View view) {
+            if (_delegate != null) {
+                _delegate.visitSite();
+            }
             if (view == itemView) {
                 animateContent(!contentExpanded);
             } else {
@@ -142,17 +191,20 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
             }
         }
 
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            Log.v(TAG, "Checked changed to: " + isChecked);
 
-        }
             /*
           * Private Methods
           */
 
         private void animateContent(final boolean expand) {
 // #1
+            if (_delegate != null) {
+                if (expand) {
+                    _delegate.userItemExpanded();
+                } else {
+                    _delegate.userItemContracted();
+                }
+            }
             if ((expand && contentExpanded) || (!expand && !contentExpanded)) {
                 return;
             }
@@ -200,6 +252,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
             });
             contentExpanded = expand;
         }
+
         private void startAnimator(int start, int end, ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
             ValueAnimator valueAnimator = ValueAnimator.ofInt(start, end);
             valueAnimator.addUpdateListener(animatorUpdateListener);
@@ -211,3 +264,4 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
         }
     }
 }
+

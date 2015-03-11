@@ -75,16 +75,17 @@ public class BloclyActivity extends ActionBarActivity implements NavigationDrawe
 
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                if(overFlowButton != null) {
+                if (overFlowButton != null) {
                     overFlowButton.setEnabled(false);
                 }
                 if (menu == null) {
                     return;
                 }
-                for (int i=0; i < menu.size(); i++) {
+                for (int i = 0; i < menu.size(); i++) {
                     menu.getItem(i).setEnabled(false);
                 }
             }
+
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
@@ -124,6 +125,7 @@ public class BloclyActivity extends ActionBarActivity implements NavigationDrawe
         navigationRecyclerView.setItemAnimator(new DefaultItemAnimator());
         navigationRecyclerView.setAdapter(navigationDrawerAdapter);
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -138,12 +140,23 @@ public class BloclyActivity extends ActionBarActivity implements NavigationDrawe
     }
 
     // #7c
+    MenuItem mItem;
+
     @Override
+
     public boolean onOptionsItemSelected(MenuItem item) {
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        if (item.getTitle().equals("Search")) {
+            Toast.makeText(this, "Searching is fun!", Toast.LENGTH_SHORT).show();
+        } else if (item.getTitle().equals("Share")) {
+            Toast.makeText(this, "I love to share!", Toast.LENGTH_SHORT).show();
+        } else if (item.getTitle().equals("Refresh")) {
+        Toast.makeText(this, "Refresh it up...", Toast.LENGTH_SHORT).show();
+        } else if (item.getTitle().equals("Mark all as read")) {
+            Toast.makeText(this, "Mark 'em all!", Toast.LENGTH_SHORT).show();
+        }
         return super.onOptionsItemSelected(item);
     }
 
